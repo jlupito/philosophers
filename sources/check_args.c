@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:26:34 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/05/22 17:09:36 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:43:16 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ void	save_args(int ac, char **av, t_data *data)
 	data->time_eat = ft_atoi(av[3]);
 	data->time_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		data->nb_times_eat = ft_atoi(av[5]);
+		data->meals_to_eat = ft_atoi(av[5]);
 	data->dead = 0;
-	data->completed_times_eat = 0;
 	pthread_mutex_init(&data->write, NULL);
 	pthread_mutex_init(&data->lock, NULL);
 }

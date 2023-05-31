@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:57 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/05/22 12:25:09 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:16:16 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ void	*routine()
 
 int	process_philo(t_data *data)
 {
+	int		i;
+
+	i = -1;
+	while (++i < data->nb_philo)
+	{
+		
+	}
 	pthread_t tid1, tid2;
 
 	pthread_create(&tid1, NULL, &routine, NULL);
