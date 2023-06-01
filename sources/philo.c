@@ -6,16 +6,13 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:57 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/05/30 16:16:16 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:45:13 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	cont = 0;
-pthread_mutex_t	lock;
-
-void	*routine()
+void	*routine(void *data)
 {
 	int i;
 
@@ -31,20 +28,15 @@ void	*routine()
 
 int	process_philo(t_data *data)
 {
-	int		i;
+	int			i;
+	pthread_t	t1;
 
 	i = -1;
 	while (++i < data->nb_philo)
 	{
-		
+		pthread_create(&data->philos[i].t1, NULL, &routine, NULL);
 	}
-	pthread_t tid1, tid2;
-
-	pthread_create(&tid1, NULL, &routine, NULL);
-	pthread_create(&tid2, NULL, &routine, NULL);
-
-	pthread_join(tid1, NULL);
-	pthread_join(tid2, NULL);
-	pthread_mutex_destroy(&lock);
-	printf("cont: %d\n", cont);
+	pthread_join(t1, NULL);
+	pthread_mutex_destroy(&data);
+	printf("cont: %d\n", );
 }

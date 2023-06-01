@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:18:11 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/05/31 14:45:06 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:45:23 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ void	free_all(t_data	*data)
 		free(data->forks);
 	if (data->philos)
 		free(data->philos);
+}
+
+void	init_data(int ac, char **av, t_data *data)
+{
+	data->nb_philo = ft_atoi(av[1]);
+	data->time_die = ft_atoi(av[2]);
+	data->time_eat = ft_atoi(av[3]);
+	data->time_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		data->meals_to_eat = ft_atoi(av[5]);
+	data->dead = 0;
+	data->time_start = ft_get_time();
+	pthread_mutex_init(&data->write, NULL);
+	pthread_mutex_init(&data->dead_lock, NULL);
 }
 
 void	init_philos(t_data *data)
@@ -42,13 +56,13 @@ int	main(int ac, char **av)
 
 	if (check_args(ac, av))
 		return (write(2, "Invalid arguments\n", 18), 1);
-	save_args(ac, av, &data);
 	data.forks = malloc(sizeof(pthread_mutex_t) * data.nb_philo);
 	if (!data.forks)
 		return (free_all(&data), 1);
 	data.philos = malloc(sizeof(t_philo) * data.nb_philo);
 	if (!data.philos)
 		return (free_all(&data), 1);
+	init_data(ac, av, &data);
 	init_philos(&data);
 	process_philo(&data);
 	return (0);
