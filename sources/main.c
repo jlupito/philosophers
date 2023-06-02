@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:18:11 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/01 14:45:23 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:27:58 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int ac, char **av)
 		return (free_all(&data), 1);
 	init_data(ac, av, &data);
 	init_philos(&data);
-	process_philo(&data);
+	while (philo hasnt died || meals eaten < meals to eat) attention le 2e est optionnel
+		process_philo(&data);
 	return (0);
 }
