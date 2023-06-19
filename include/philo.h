@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:45 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/02 11:01:32 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:17:26 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct s_philo
 	pthread_t		t1;
 	int				id;
 	int				meals_eaten;
-	int				*right_fork;
-	int				*left_fork;
+	int				right_fork;
+	int				left_fork;
 	// int				status;
 	// int				eating;
 	// pthread_mutex_t	lock;
@@ -49,18 +49,22 @@ typedef struct s_data
 	int				time_die;
 	int				time_eat;
 	int				time_sleep;
-	int				time_start;
+	long			time_start;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	write;
+	pthread_mutex_t	write_lock;
 	// int				completed_times_eat;
 	// pthread_t		*tid;
 }	t_data;
 
 void	init_data(int ac, char **av, t_data *data);
 void	init_philos(t_data *data);
+int		process_philo(t_data *data);
 int		ft_atoi(char *nptr);
 long	ft_get_time(void);
 int		check_args(int ac, char **av);
+void	write_message(char *str, int id, t_data *data);
+void	ft_usleep(long time_ms);
+long	ft_get_time(void);
 
 #endif

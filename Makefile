@@ -5,7 +5,7 @@ INCLUDES = -I./include
 
 #source
 SRCS_DIR = sources/
-SRCS = main.c philo.c utils.c actions.c \
+SRCS = main.c init.c utils.c actions.c \
 
 SRCS_PREFIXED = $(addprefix $(SRCS_DIR), $(SRCS))
 

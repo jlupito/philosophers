@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:26:34 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/01 14:46:54 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:33:39 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,15 @@ long ft_get_time()
 	start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (start_time);
 }
+
+void	ft_usleep(long time_ms)
+{
+	long	start;
 	
+	start = ft_get_time();
+	while ((ft_get_time() - start) < time_ms)
+		usleep(time_ms / 10);
+}
 	
 int	ft_atoi(char *nptr)
 {
@@ -55,24 +63,24 @@ int check_args(int ac, char **av)
 	
 	if (ac != 5 && ac != 6)
 		return (1);
-	ac--;
-	while (ac > 0)
-	{
-		i = 0;
-		while (av[ac][i])
-		{
-			if (av[ac][0] == '+')
-				i++;
-			if (av[ac][i] >= 48 && av[ac][i] <= 57)
-				i++;
-			else
-				return (1);
-		}
-		if (ft_atoi(av[ac]) > 0)
-			ac--;
-		else
-			return (1);
-	}
+	// ac--;
+	// while (ac > 0)
+	// {
+	// 	i = 0;
+	// 	while (av[ac][i])
+	// 	{
+	// 		if (av[ac][0] == '+')
+	// 			i++;
+	// 		if (av[ac][i] >= 48 && av[ac][i] <= 57)
+	// 			i++;
+	// 		else
+	// 			return (1);
+	// 	}
+	// 	if (ft_atoi(av[ac]) > 0)
+	// 		ac--;
+	// 	else
+	// 		return (1);
+	// }
 	return (0);
 }
 		
