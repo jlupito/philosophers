@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:39:58 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/19 17:20:07 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:49:25 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	write_message(char *str, int id, t_data *data)
 {
-	long	time;
+	long long	time;
 
 	pthread_mutex_lock(&data->write_lock);
 	time = ft_get_time() - data->time_start;
 	if (!(data->dead))
-		printf("%ld %d %s\n", time, id + 1, str);
+		printf("%lld %d %s\n", time, id + 1, str);
 	pthread_mutex_unlock(&data->write_lock);
 }
 

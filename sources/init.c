@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:57 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/19 11:48:40 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:48:09 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ void	init_philos(t_data *data)
 		data->philos[i].id = i + 1;
 		data->philos[i].meals_eaten = 0;
 		data->philos[i].left_fork = i + 1;
-		if (i + 1 != data->nb_philo)
-			data->philos[i].right_fork = i + 2;
+		if (data->philos[i].id == 1)
+			data->philos[i].right_fork = data->nb_philo;
 		else
-			data->philos[i].right_fork = 1;
-		pthread_mutex_init(&data->forks[i + 1], NULL);
+			data->philos[i].right_fork = i;
+		pthread_mutex_init(&data->forks[i], NULL);
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:45 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/19 17:17:26 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:23:16 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,15 @@ typedef struct s_data
 	// pthread_t		*tid;
 }	t_data;
 
-void	init_data(int ac, char **av, t_data *data);
-void	init_philos(t_data *data);
-int		process_philo(t_data *data);
-int		ft_atoi(char *nptr);
-long	ft_get_time(void);
-int		check_args(int ac, char **av);
-void	write_message(char *str, int id, t_data *data);
-void	ft_usleep(long time_ms);
-long	ft_get_time(void);
+void		init_data(int ac, char **av, t_data *data);
+void		init_philos(t_data *data);
+int			process_philo(t_data *data);
+int			ft_atoi(char *nptr);
+long long	ft_get_time(void);
+int			check_args(int ac, char **av);
+void		write_message(char *str, int id, t_data *data);
+void		ft_usleep(long long time_ms);
+long long	ft_get_time(void);
+void		*routine(void *arg);
 
 #endif

@@ -6,23 +6,23 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:26:34 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/19 17:33:39 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:50:34 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long ft_get_time()
+long long ft_get_time()
 {
 	struct timeval tv;
-	long start_time;
+	long long start_time;
 	
 	gettimeofday(&tv, NULL);
 	start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (start_time);
 }
 
-void	ft_usleep(long time_ms)
+void	ft_usleep(long long time_ms)
 {
 	long	start;
 	
@@ -51,7 +51,7 @@ int	ft_atoi(char *nptr)
 	}
 	while (nptr[i] && (nptr[i] > 47 && nptr[i] < 58))
 	{
-		res *= 10 + (nptr[i] - 48);
+		res = res * 10 + (nptr[i] - 48);
 		i++;
 	}
 	return (res * sign);
@@ -63,24 +63,24 @@ int check_args(int ac, char **av)
 	
 	if (ac != 5 && ac != 6)
 		return (1);
-	// ac--;
-	// while (ac > 0)
-	// {
-	// 	i = 0;
-	// 	while (av[ac][i])
-	// 	{
-	// 		if (av[ac][0] == '+')
-	// 			i++;
-	// 		if (av[ac][i] >= 48 && av[ac][i] <= 57)
-	// 			i++;
-	// 		else
-	// 			return (1);
-	// 	}
-	// 	if (ft_atoi(av[ac]) > 0)
-	// 		ac--;
-	// 	else
-	// 		return (1);
-	// }
+	ac--;
+	while (ac > 0)
+	{
+		i = 0;
+		while (av[ac][i])
+		{
+			if (av[ac][0] == '+')
+				i++;
+			if (av[ac][i] >= 48 && av[ac][i] <= 57)
+				i++;
+			else
+				return (1);
+		}
+		if (ft_atoi(av[ac]) > 0)
+			ac--;
+		else
+			return (1);
+	}
 	return (0);
 }
 		

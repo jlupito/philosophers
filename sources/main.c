@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:18:11 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/19 17:33:08 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:56:32 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	// if (check_args(ac, av))
-	// 	return (write(2, "Invalid arguments\n", 18), 1);
+	if (check_args(ac, av))
+		return (write(2, "Invalid arguments\n", 18), 1);
 	init_data(ac, av, &data);
 	data.forks = malloc(sizeof(pthread_mutex_t) * data.nb_philo);
 	if (!data.forks)
