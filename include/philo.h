@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:45 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/20 15:23:16 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:22:02 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int				meals_eaten;
 	int				right_fork;
 	int				left_fork;
+	long int		time_last_eaten;
 	// int				status;
 	// int				eating;
 	// pthread_mutex_t	lock;
@@ -49,7 +50,7 @@ typedef struct s_data
 	int				time_die;
 	int				time_eat;
 	int				time_sleep;
-	long			time_start;
+	long int		time_start;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
@@ -61,11 +62,12 @@ void		init_data(int ac, char **av, t_data *data);
 void		init_philos(t_data *data);
 int			process_philo(t_data *data);
 int			ft_atoi(char *nptr);
-long long	ft_get_time(void);
+long int	ft_get_time(void);
 int			check_args(int ac, char **av);
 void		write_message(char *str, int id, t_data *data);
-void		ft_usleep(long long time_ms);
-long long	ft_get_time(void);
+void		process_eating(t_philo *philos);
+void		ft_usleep(long int time_ms);
+long int	ft_get_time(void);
 void		*routine(void *arg);
 
 #endif

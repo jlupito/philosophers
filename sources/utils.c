@@ -6,25 +6,25 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:26:34 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/20 14:50:34 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:07:55 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long long ft_get_time()
+long int ft_get_time()
 {
 	struct timeval tv;
-	long long start_time;
+	long int start_time;
 	
 	gettimeofday(&tv, NULL);
 	start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (start_time);
 }
 
-void	ft_usleep(long long time_ms)
+void	ft_usleep(long int time_ms)
 {
-	long	start;
+	long int	start;
 	
 	start = ft_get_time();
 	while ((ft_get_time() - start) < time_ms)

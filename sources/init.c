@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:57 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/20 13:48:09 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:51:28 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_data(int ac, char **av, t_data *data)
 	else
 		data->meals_to_eat = -1;
 	data->dead = 0;
-	data->time_start = ft_get_time();
+	data->time_start = 0;
 	pthread_mutex_init(&data->write_lock, NULL);
 	pthread_mutex_init(&data->dead_lock, NULL);
 }
