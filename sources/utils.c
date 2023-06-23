@@ -6,31 +6,46 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:26:34 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/21 17:07:55 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:54:00 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long int ft_get_time()
+long int	ft_get_time(void)
 {
-	struct timeval tv;
-	long int start_time;
-	
+	struct timeval	tv;
+	long int		start_time;
+
 	gettimeofday(&tv, NULL);
 	start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (start_time);
 }
 
-void	ft_usleep(long int time_ms)
+void	ft_usleep(long int time_ms, t_data *data)
 {
-	long int	start;
-	
-	start = ft_get_time();
-	while ((ft_get_time() - start) < time_ms)
-		usleep(time_ms / 10);
+	long int	time;
+
+	time = ft_get_time();
+	while (!(data->dead))
+	{
+		if (ft_get_time() - time >= time_ms)
+			break ;
+		usleep(10);
+	}
 }
-	
+
+void	write_message(char *str, int id, t_data *data)
+{
+	long int	time;
+
+	pthread_mutex_lock(&data->write_lock);
+	time = ft_get_time() - data->time_start;
+	if (!(data->dead))
+		printf("%ld %d %s\n", time, id, str);
+	pthread_mutex_unlock(&data->write_lock);
+}
+
 int	ft_atoi(char *nptr)
 {
 	int	i;
@@ -57,10 +72,10 @@ int	ft_atoi(char *nptr)
 	return (res * sign);
 }
 
-int check_args(int ac, char **av)
+int	check_args(int ac, char **av)
 {
 	int	i;
-	
+
 	if (ac != 5 && ac != 6)
 		return (1);
 	ac--;
@@ -83,4 +98,3 @@ int check_args(int ac, char **av)
 	}
 	return (0);
 }
-		

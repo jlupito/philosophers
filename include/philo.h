@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:45 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/21 17:22:02 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:27:57 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-// struct	s_data;
-
 typedef struct s_philo
 {
 	struct s_data	*data;
@@ -36,9 +34,6 @@ typedef struct s_philo
 	int				right_fork;
 	int				left_fork;
 	long int		time_last_eaten;
-	// int				status;
-	// int				eating;
-	// pthread_mutex_t	lock;
 }	t_philo;
 
 typedef struct s_data
@@ -47,6 +42,7 @@ typedef struct s_data
 	int				meals_to_eat;
 	pthread_mutex_t	dead_lock;
 	int				dead;
+	int				stop;
 	int				time_die;
 	int				time_eat;
 	int				time_sleep;
@@ -54,20 +50,17 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
-	// int				completed_times_eat;
-	// pthread_t		*tid;
 }	t_data;
 
 void		init_data(int ac, char **av, t_data *data);
 void		init_philos(t_data *data);
 int			process_philo(t_data *data);
-int			ft_atoi(char *nptr);
+void		process_eating(t_philo *philos);
+void		*routine(void *arg);
 long int	ft_get_time(void);
+void		ft_usleep(long int time_ms, t_data *data);
+int			ft_atoi(char *nptr);
 int			check_args(int ac, char **av);
 void		write_message(char *str, int id, t_data *data);
-void		process_eating(t_philo *philos);
-void		ft_usleep(long int time_ms);
-long int	ft_get_time(void);
-void		*routine(void *arg);
 
 #endif
