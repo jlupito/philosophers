@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:45 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/26 17:46:08 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:35:36 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ typedef struct s_data
 {
 	int				nb_philo;
 	int				meals_to_eat;
-	int				meals_complete;
-	pthread_mutex_t	dead_lock;
 	int				dead;
 	int				t_die;
 	int				t_eat;
@@ -49,6 +47,8 @@ typedef struct s_data
 	long long		t_start;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	eat_lock;
 	pthread_mutex_t	write_lock;
 }	t_data;
 
@@ -62,5 +62,8 @@ void		ft_usleep(long long time_ms, t_data *data);
 int			ft_atoi(char *nptr);
 int			check_args(int ac, char **av);
 void		write_message(char *str, int id, t_data *data);
+int			check_meals(t_data *data);
+int			check_dead(t_data *data);
+void		check_stop(t_data *data);
 
 #endif

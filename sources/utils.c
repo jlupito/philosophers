@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:26:34 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/26 17:47:10 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:17:04 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	ft_usleep(long long time_ms, t_data *data)
 	long long	time;
 
 	time = ft_get_time();
-	while (!(data->dead))
+	while (!check_dead(data) && !check_meals(data))
 	{
 		if (ft_get_time() - time >= time_ms)
 			break ;
-		usleep(50);
+		usleep(10);
 	}
 }
 
@@ -39,10 +39,10 @@ void	write_message(char *str, int id, t_data *data)
 {
 	long long	time;
 
-	time = ft_get_time() - data->t_start;
-	if (!(data->dead))
+	if (!data->dead)
 	{
 		pthread_mutex_lock(&data->write_lock);
+		time = ft_get_time() - data->t_start;
 		printf("%lld %d %s\n", time, id, str);
 		pthread_mutex_unlock(&data->write_lock);
 	}
