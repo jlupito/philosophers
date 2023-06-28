@@ -6,11 +6,18 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:26:34 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/27 17:17:04 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:14:27 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	solo_philo(t_philo philos, t_data *data)
+{
+	write_message("has taken a fork", philos.id, data);
+	ft_usleep(data->t_die, data);
+	write_message("died", philos.id, data);
+}
 
 long long	ft_get_time(void)
 {
@@ -72,31 +79,4 @@ int	ft_atoi(char *nptr)
 		i++;
 	}
 	return (res * sign);
-}
-
-int	check_args(int ac, char **av)
-{
-	int	i;
-
-	if (ac != 5 && ac != 6)
-		return (1);
-	ac--;
-	while (ac > 0)
-	{
-		i = 0;
-		while (av[ac][i])
-		{
-			if (av[ac][0] == '+')
-				i++;
-			if (av[ac][i] >= 48 && av[ac][i] <= 57)
-				i++;
-			else
-				return (1);
-		}
-		if (ft_atoi(av[ac]) > 0)
-			ac--;
-		else
-			return (1);
-	}
-	return (0);
 }

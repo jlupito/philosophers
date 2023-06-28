@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:45 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/27 15:35:36 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:11:07 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ void		write_message(char *str, int id, t_data *data);
 int			check_meals(t_data *data);
 int			check_dead(t_data *data);
 void		check_stop(t_data *data);
+void		solo_philo(t_philo philos, t_data *data);
+void		dies(int id, t_data *data);
 
 #endif

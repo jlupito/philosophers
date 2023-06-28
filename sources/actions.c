@@ -6,11 +6,19 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:39:58 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/27 17:53:19 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:10:53 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	dies(int id, t_data *data)
+{
+	write_message("died", id, data);
+	pthread_mutex_lock(&data->dead_lock);
+	data->dead = 1;
+	pthread_mutex_unlock(&data->dead_lock);
+}
 
 int	check_meals(t_data *data)
 {
@@ -55,12 +63,9 @@ void	check_stop(t_data *data)
 			pthread_mutex_lock(&data->eat_lock);
 			starving = ft_get_time() - data->philos[i].t_last_meal;
 			pthread_mutex_unlock(&data->eat_lock);
-			if ((starving) > data->t_die)
+			if (starving > data->t_die)
 			{
-				write_message("died", data->philos[i].id, data);
-				pthread_mutex_lock(&data->dead_lock);
-				data->dead = 1;
-				pthread_mutex_unlock(&data->dead_lock);
+				dies(data->philos[i].id, data);
 				break ;
 			}
 			if (check_meals(data))
@@ -96,22 +101,4 @@ void	process_eating(t_philo *philos)
 	ft_usleep(philos->data->t_eat, philos->data);
 	pthread_mutex_unlock(&philos->data->forks[philos->left_fork]);
 	pthread_mutex_unlock(&philos->data->forks[philos->right_fork]);
-}
-
-void	*routine(void *arg)
-{
-	t_philo		*philos;
-
-	philos = (t_philo *) arg;
-	if (philos->id % 2)
-		usleep(philos->data->t_eat / 2);
-	while (!check_dead(philos->data) && philos->meals_eaten < philos->data->meals_to_eat)
-	{
-		process_eating(philos);
-		write_message("is sleeping", philos->id, philos->data);
-		ft_usleep(philos->data->t_sleep, philos->data);
-		write_message("is thinking", philos->id, philos->data);
-		usleep(100);
-	}
-	return (NULL);
 }
