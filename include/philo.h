@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:45 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/28 14:11:07 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/29 10:07:11 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philo
 	struct s_data	*data;
 	pthread_t		t1;
 	int				id;
-	int				meals_eaten;
+	int				nb_ate;
 	int				right_fork;
 	int				left_fork;
 	long long		t_last_meal;
@@ -39,7 +39,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				nb_philo;
-	int				meals_to_eat;
+	int				nb_to_eat;
 	int				dead;
 	int				t_die;
 	int				t_eat;

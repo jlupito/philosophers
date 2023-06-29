@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:58:57 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/28 12:03:22 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/29 10:07:31 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	init_data(int ac, char **av, t_data *data)
 	data->t_die = ft_atoi(av[2]);
 	data->t_eat = ft_atoi(av[3]);
 	data->t_sleep = ft_atoi(av[4]);
-	data->meals_to_eat = -1;
+	data->nb_to_eat = -1;
 	if (ac == 6)
-		data->meals_to_eat = ft_atoi(av[5]);
+		data->nb_to_eat = ft_atoi(av[5]);
 	data->dead = 0;
 	data->t_start = 0;
 	pthread_mutex_init(&data->write_lock, NULL);
@@ -64,7 +64,7 @@ void	init_philos(t_data *data)
 	{
 		data->philos[i].data = data;
 		data->philos[i].id = i + 1;
-		data->philos[i].meals_eaten = 0;
+		data->philos[i].nb_ate = 0;
 		data->philos[i].t_last_meal = ft_get_time();
 		data->philos[i].left_fork = i;
 		data->philos[i].right_fork = i + 1;

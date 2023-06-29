@@ -6,7 +6,7 @@
 /*   By: jarthaud <jarthaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:18:11 by jarthaud          #+#    #+#             */
-/*   Updated: 2023/06/28 14:20:08 by jarthaud         ###   ########.fr       */
+/*   Updated: 2023/06/29 10:24:37 by jarthaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	*routine(void *arg)
 	philos = (t_philo *) arg;
 	if (philos->id % 2)
 		usleep(philos->data->t_eat / 2);
-	while (!(philos->data->dead)
-		&& philos->meals_eaten != philos->data->meals_to_eat)
+	while (1)
 	{
 		process_eating(philos);
+		if (philos->data->dead || philos->nb_ate == philos->data->nb_to_eat)
+			break ;
 		write_message("is sleeping", philos->id, philos->data);
 		ft_usleep(philos->data->t_sleep, philos->data);
 		write_message("is thinking", philos->id, philos->data);
