@@ -14,6 +14,9 @@ This project is a C implementation to resolve the famous philosophers problem:
   a philosopher dies of starvation.
 - Every philosopher needs to eat and should never starve.
 
+The program takes 4 or 5 arguments: number of philosophers, time before starving,
+time required to eat, time required to sleep and number of meals to complete (non-compulsory argument).
+
 *The idea of the project is to learn about concurrent programming and get
 familiar with threads and mutexes, and the concepts of data races and deadlocks.
 Semaphores are only covered in the bonus part, which is not included here.*
