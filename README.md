@@ -1,6 +1,8 @@
 # philosophers
 
   This is the philosopohers project for School 42.
+  
+  ![Screenshot from 2023-11-22 12-21-16](https://github.com/jlupito/philosophers/assets/113239012/b0fe5ed4-cd99-42db-859d-996cdc3b6543)
 
 This project is a C implementation to resolve the famous philosophers problem:
 - One or more philosophers sit at a round table. There is a large bowl of spaghetti in the middle of the table.
